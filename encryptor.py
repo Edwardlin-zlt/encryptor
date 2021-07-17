@@ -21,12 +21,12 @@ class Encryptor:
             # write the encrypted file
         with open(filename, "wb") as file:
             file.write(encrypted_data)
+        print(f"{filename} done")
 
     def __encrypt_dir(self, targetDir='encrypt-folder'):
         for dirPath, dirNames, filenames in os.walk(targetDir):
             for filename in filenames:
                 self.__encrypt_file(os.path.join(dirPath, filename))
-                print(f"{filename} done")
 
     def encrypt(self, file_or_dir):
         if os.path.isfile(file_or_dir):

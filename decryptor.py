@@ -21,12 +21,12 @@ class Decryptor:
             # write the original file
         with open(filename, "wb") as file:
             file.write(decrypted_data)
+        print(f"{filename} has done")
 
     def __decrypt_dir(self, targetDir):
         for dir_path, dir_names, filenames in os.walk(targetDir):
             for filename in filenames:
                 self.__decrypt_file(os.path.join(dir_path, filename))
-                print(f"{filename} has done")
 
     def decrypt(self, file_or_dir):
         if os.path.isfile(file_or_dir):
