@@ -2,6 +2,7 @@ import os
 import shutil
 
 from cryptography.fernet import Fernet
+from pathlib import Path
 
 
 class Encryptor:
@@ -29,9 +30,10 @@ class Encryptor:
                 self.__encrypt_file(os.path.join(dirPath, filename))
 
     def encrypt(self, file_or_dir):
-        if os.path.isfile(file_or_dir):
-            self.__encrypt_file(file_or_dir)
-        elif os.path.isdir(file_or_dir):
-            self.__encrypt_dir(file_or_dir)
+        path = Path(file_or_dir)
+        if os.path.isfile(path):
+            self.__encrypt_file(path)
+        elif os.path.isdir(path):
+            self.__encrypt_dir(path)
         else:
             raise Exception()

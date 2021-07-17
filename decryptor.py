@@ -2,6 +2,7 @@ import shutil
 import os
 
 from cryptography.fernet import Fernet
+from pathlib import Path
 
 
 class Decryptor:
@@ -29,9 +30,10 @@ class Decryptor:
                 self.__decrypt_file(os.path.join(dir_path, filename))
 
     def decrypt(self, file_or_dir):
-        if os.path.isfile(file_or_dir):
-            self.__decrypt_file(file_or_dir)
-        elif os.path.isdir(file_or_dir):
-            self.__decrypt_dir(file_or_dir)
+        path = Path(file_or_dir)
+        if os.path.isfile(path):
+            self.__decrypt_file(path)
+        elif os.path.isdir(path):
+            self.__decrypt_dir(path)
         else:
             raise Exception()
